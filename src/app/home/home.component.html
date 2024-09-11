@@ -1,0 +1,14 @@
+<div class="home container">
+  <div>
+    <mat-nav-list>
+      @for (country of (countries$ | async); track country.name) {
+      <mat-list-item routerLink="/home/{{ country.name }}">{{
+        country.name
+      }}</mat-list-item>
+      }
+    </mat-nav-list>
+  </div>
+  <div>
+    <button mat-flat-button>random countries</button>
+  </div>
+</div>
