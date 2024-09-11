@@ -15,14 +15,14 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@@angular-builders/custom-webpack:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
               "path": "src/custom-webpack.config.ts"
             },
             "outputPath": "dist/develops-today-demo2",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",

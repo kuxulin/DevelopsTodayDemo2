@@ -1,10 +1,5 @@
-import { EnvironmentPlugin } from 'webpack';
-
-require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  output: {
-    crossOriginLoading: 'anonymous',
-  },
-  plugins: [new EnvironmentPlugin(['CURRENT_YEAR'])],
+  plugins: [new Dotenv()],
 };
