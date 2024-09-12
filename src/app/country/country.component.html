@@ -1,1 +1,24 @@
-<p>country works!</p>
+<div class="country container">
+  <div>
+    <mat-list>
+      @for (holiday of (holidays$ | async); track holiday.name) {
+      <mat-list-item>
+        <span matListItemTitle>
+          {{ holiday.name }} - {{ holiday.date | date }}
+        </span>
+        <span matListItemLine>{{ holiday.types }}</span>
+      </mat-list-item>
+      }
+    </mat-list>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Year</mat-label>
+      <mat-select [(value)]="selectedYear" (valueChange)="getHolidays()">
+        @for (year of enabledYears; track year) {
+        <mat-option value="{{ year }}">{{ year }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

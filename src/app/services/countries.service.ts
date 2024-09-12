@@ -22,4 +22,10 @@ export class CountriesService {
         )
       );
   }
+
+  getCountryHolidays(code: string, year: number): Observable<Holiday[]> {
+    return this.http.get<Holiday[]>(
+      `${environment.API}/PublicHolidays/${year}/${code}`
+    );
+  }
 }
