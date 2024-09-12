@@ -28,4 +28,10 @@ export class CountriesService {
       `${environment.API}/PublicHolidays/${year}/${code}`
     );
   }
+
+  getClosestCountryHoliday(code: string): Observable<Holiday> {
+    return this.http
+      .get(`${environment.API}/NextPublicHolidays/${code}`)
+      .pipe(map((holidays: any) => holidays[1]));
+  }
 }

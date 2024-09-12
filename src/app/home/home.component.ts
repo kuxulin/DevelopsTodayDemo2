@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Country } from '../models/country';
 import { CountriesService } from '../services/countries.service';
 import { MatListModule } from '@angular/material/list';
@@ -27,16 +27,36 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class HomeComponent implements OnInit {
   countries$!: Observable<Country[]>;
-  constructor(private countriesService: CountriesService) {}
   searchText: string = '';
+  randomCountries!: Country[];
+
+  constructor(private countriesService: CountriesService) {}
 
   ngOnInit(): void {
     this.getCountries();
+    this.generateRandomData();
   }
 
   getCountries() {
     this.countries$ = this.countriesService.getCountriesByPartialName(
       this.searchText
     );
+  }
+
+  generateRandomData() {
+    this.countriesService
+      .getCountriesByPartialName('')
+      .pipe(take(1))
+      .subscribe((res) => {
+        const shuffled = res.sort(() => 0.5 - Math.random());
+        this.randomCountries = shuffled.slice(0, 3);
+
+        this.randomCountries.forEach((country) => {
+          this.countriesService
+            .getClosestCountryHoliday(country.countryCode)
+            .pipe(take(1))
+            .subscribe((holiday) => (country.closestHoliday = holiday));
+        });
+      });
   }
 }

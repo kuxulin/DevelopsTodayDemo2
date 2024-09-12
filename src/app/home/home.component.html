@@ -17,6 +17,18 @@
     </mat-nav-list>
   </div>
   <div>
-    <button mat-flat-button>random countries</button>
+    <mat-list>
+      @for (randomCountry of randomCountries; track randomCountry.name) {
+      <mat-list-item>
+        <span matListItemTitle>
+          {{ randomCountry.name }}
+        </span>
+        <span matListItemLine>
+          {{ randomCountry.closestHoliday.name }} -
+          {{ randomCountry.closestHoliday.date | date }}
+        </span>
+      </mat-list-item>
+      }
+    </mat-list>
   </div>
 </div>
