@@ -4,6 +4,6 @@ import { CountryComponent } from './country/country.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'home/:name', component: CountryComponent },
+  { path: 'home/:countryCode', component: CountryComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
