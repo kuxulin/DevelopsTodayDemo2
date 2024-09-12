@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Country } from '../models/country';
+import { Holiday } from '../models/holiday';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,7 @@ export class CountriesService {
 
   getCountriesByPartialName(name: string): Observable<Country[]> {
     return this.http
-      .get<Country[]>(`${process.env['API']}/AvailableCountries`)
+      .get<Country[]>(`${environment.API}/AvailableCountries`)
       .pipe(
         map((countries) =>
           countries.filter((country) =>

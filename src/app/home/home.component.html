@@ -1,8 +1,16 @@
 <div class="home container">
   <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Print text for searching</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (ngModelChange)="getCountries()"
+      />
+    </mat-form-field>
     <mat-nav-list>
       @for (country of (countries$ | async); track country.name) {
-      <mat-list-item routerLink="/home/{{ country.name }}">{{
+      <mat-list-item [routerLink]="['/home', country.countryCode]">{{
         country.name
       }}</mat-list-item>
       }
